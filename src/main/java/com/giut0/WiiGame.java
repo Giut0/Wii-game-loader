@@ -13,7 +13,7 @@ public class WiiGame {
     private String gamePath;
     
     public WiiGame(String gameCode, String gameName, String gamePath) {
-        this.gameCode = gamePath;
+        this.gameCode = gameCode;
         this.gameName = gameName;
         this.gamePath = gamePath;
     }
