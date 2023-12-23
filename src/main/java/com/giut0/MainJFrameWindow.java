@@ -1,5 +1,6 @@
 package com.giut0;
 
+import java.nio.file.FileAlreadyExistsException;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -28,84 +29,84 @@ public class MainJFrameWindow extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        jTextFieldFile = new javax.swing.JTextField();
+        jButtonSelectFile = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
+        jTextFieldDest = new javax.swing.JTextField();
+        jButtonSelectDest = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        jTextFieldGameName = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        jTextFieldGameCode = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
+        jButtonStart = new javax.swing.JButton();
         jProgressBar1 = new javax.swing.JProgressBar();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        jTextAreaLogs = new javax.swing.JTextArea();
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Wii game loader");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldFile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                jTextFieldFileActionPerformed(evt);
             }
         });
 
-        jButton1.setText("Select file");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonSelectFile.setText("Select file");
+        jButtonSelectFile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonSelectFileActionPerformed(evt);
             }
         });
 
         jLabel1.setText("File [wbfs]");
 
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldDest.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                jTextFieldDestActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Select file");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jButtonSelectDest.setText("Select file");
+        jButtonSelectDest.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jButtonSelectDestActionPerformed(evt);
             }
         });
 
         jLabel2.setText("Destination drive");
 
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldGameName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                jTextFieldGameNameActionPerformed(evt);
             }
         });
 
         jLabel3.setText("Game name");
 
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldGameCode.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
+                jTextFieldGameCodeActionPerformed(evt);
             }
         });
 
         jLabel4.setText("Game code");
 
-        jButton3.setText("Start");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jButtonStart.setText("Start");
+        jButtonStart.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                jButtonStartActionPerformed(evt);
             }
         });
 
         jProgressBar1.setForeground(new java.awt.Color(0, 204, 102));
 
-        jTextArea1.setEditable(false);
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        jTextAreaLogs.setEditable(false);
+        jTextAreaLogs.setColumns(20);
+        jTextAreaLogs.setRows(5);
+        jScrollPane1.setViewportView(jTextAreaLogs);
 
         jLabel5.setText("Logs");
 
@@ -117,23 +118,23 @@ public class MainJFrameWindow extends javax.swing.JFrame {
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButtonStart, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(40, 40, 40)
                         .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel4)
                     .addComponent(jLabel3)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextFieldDest, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton2))
+                        .addComponent(jButtonSelectDest))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addComponent(jTextFieldGameCode, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
+                        .addComponent(jTextFieldGameName, javax.swing.GroupLayout.Alignment.LEADING))
                     .addComponent(jLabel2)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextFieldFile, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1))
+                        .addComponent(jButtonSelectFile))
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -152,26 +153,26 @@ public class MainJFrameWindow extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1))
+                            .addComponent(jTextFieldFile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonSelectFile))
                         .addGap(24, 24, 24)
                         .addComponent(jLabel2)
                         .addGap(10, 10, 10)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton2))
+                            .addComponent(jTextFieldDest, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonSelectDest))
                         .addGap(26, 26, 26)
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextFieldGameName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(24, 24, 24)
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextFieldGameCode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(42, 42, 42)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jProgressBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jButtonStart, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(38, Short.MAX_VALUE))
         );
@@ -179,71 +180,88 @@ public class MainJFrameWindow extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void jTextFieldFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldFileActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_jTextFieldFileActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void jTextFieldDestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldDestActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_jTextFieldDestActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void jTextFieldGameNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldGameNameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_jTextFieldGameNameActionPerformed
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+    private void jTextFieldGameCodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldGameCodeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
+    }//GEN-LAST:event_jTextFieldGameCodeActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButtonSelectFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSelectFileActionPerformed
         JFileChooser jFileChooser = new JFileChooser();
         FileNameExtensionFilter filter = new FileNameExtensionFilter("wbfs files", "wbfs");
         jFileChooser.setFileFilter(filter);
         jFileChooser.showOpenDialog(null);
 
         String fileString = jFileChooser.getSelectedFile().toPath().toString();
-        jTextField1.setText(fileString);
-    }//GEN-LAST:event_jButton1ActionPerformed
+        jTextFieldFile.setText(fileString);
+    }//GEN-LAST:event_jButtonSelectFileActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jButtonSelectDestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSelectDestActionPerformed
         JFileChooser jDirChooser = new JFileChooser();
         jDirChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
         jDirChooser.setAcceptAllFileFilterUsed(false);
         jDirChooser.showOpenDialog(null);
 
         String dirString = jDirChooser.getSelectedFile().toPath().toString() + "/";
-        jTextField2.setText(dirString);
+        jTextFieldDest.setText(dirString);
 
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jButtonSelectDestActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void jButtonStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonStartActionPerformed
 
-        boolean value = false;
+        boolean value = false; // Initializing a boolean variable
+
+        // Setting initial values for progress bar and text area
         jProgressBar1.setValue(0);
-        jTextArea1.setText(null);
+        jTextAreaLogs.setText(null);
+
         try {
-            WiiGameException.checkEmptyFields(jTextField1.getText(), jTextField2.getText(), jTextField3.getText(), jTextField4.getText());
+            // Checking for empty fields in the input text fields
+            WiiGameException.checkEmptyFields(jTextFieldFile.getText(), jTextFieldDest.getText(), jTextFieldGameName.getText(), jTextFieldGameCode.getText());
+
+            // Setting progress bar value and updating logs
             jProgressBar1.setValue(10);
-            jTextArea1.append(">> Starting progess..." + "\n");
-            value = Main.transferFile(jTextField1.getText(), jTextField2.getText(), jTextField3.getText(), jTextField4.getText(), jTextArea1);
+            jTextAreaLogs.append(">> Starting progress..." + "\n");
+
+            // Calling the transferFile method from Main class to transfer Wii game files
+            value = Main.transferFile(jTextFieldFile.getText(), jTextFieldDest.getText(), jTextFieldGameName.getText(), jTextFieldGameCode.getText());
+
+            // Handling the result of the file transfer
             if (value == true) {
-                jTextArea1.append(">> Completed!" + "\n");
+                jTextAreaLogs.append(">> Completed!" + "\n");
                 jProgressBar1.setValue(100);
-            }else{
-                jTextArea1.append(">> Process failed!" + "\n");
+            } else {
+                jTextAreaLogs.append(">> Process failed!" + "\n");
                 jProgressBar1.setValue(0);
             }
+        } catch (FileAlreadyExistsException f) {
+            // Handling the case where the file already exists
+            jTextAreaLogs.append(">> Error: File already exists \n");
+            jProgressBar1.setValue(0);
+            System.out.println(f);
         } catch (Exception e) {
-            jTextArea1.append(e.getMessage().toString() + "\n");
+            // Handling other exceptions and displaying their messages
+            jTextAreaLogs.append(e.getMessage().toString() + "\n");
+            jProgressBar1.setValue(0);
             System.out.println(e);
         }
 
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_jButtonStartActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButtonSelectDest;
+    private javax.swing.JButton jButtonSelectFile;
+    private javax.swing.JButton jButtonStart;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -251,10 +269,10 @@ public class MainJFrameWindow extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     public javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JScrollPane jScrollPane1;
-    public javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
+    public javax.swing.JTextArea jTextAreaLogs;
+    private javax.swing.JTextField jTextFieldDest;
+    private javax.swing.JTextField jTextFieldFile;
+    private javax.swing.JTextField jTextFieldGameCode;
+    private javax.swing.JTextField jTextFieldGameName;
     // End of variables declaration//GEN-END:variables
 }
