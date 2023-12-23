@@ -6,14 +6,15 @@ import java.io.File;
  *
  * @author Giut0
  */
+
 public class WiiGame {
-    
+
     private String gameCode;
     private String gameName;
     private String gamePath;
-    
+
     public WiiGame(String gameCode, String gameName, String gamePath) {
-        this.gameCode = gamePath;
+        this.gameCode = gameCode;
         this.gameName = gameName;
         this.gamePath = gamePath;
     }
@@ -31,7 +32,7 @@ public class WiiGame {
     public void setGameName(String gameName) {
         this.gameName = gameName;
     }
-    
+
     public void setGamePath(String gamePath) {
         this.gamePath = gamePath;
     }
@@ -44,9 +45,8 @@ public class WiiGame {
         return gameName;
     }
 
-    
     public String getGamePath() {
         return gamePath;
     }
-    
+
 }
