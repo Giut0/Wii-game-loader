@@ -2,7 +2,6 @@ package com.giut0;
 
 import java.io.File;
 import java.nio.file.Files;
-import java.nio.file.Path;
 
 /**
  * This program handles the transfer of Wii game files to a WBFS directory.
@@ -29,16 +28,16 @@ public class Main {
         }
 
         // Creating a directory for the specific game within the WBFS directory
-        File gameDir = new File(wbfsDir.toPath().toString() + "/" + wiiGame.getGameName() + "/");
+        File gameDir = new File(wbfsDir.toPath().toString() + File.separator + wiiGame.getGameName() + File.separator);
         if (!gameDir.exists()) {
             gameDir.mkdir();
         }
 
         // Creating the final game file in the WBFS directory
-        File finalGameFile = new File(gameDir.toString() + "/" + wiiGame.getGameCode() + ".wbfs");
+        File finalGameFile = new File(gameDir.toString() + File.separator + wiiGame.getGameCode() + ".wbfs");
 
         // Copying the game file to the final destination
-        Path copy = Files.copy(gameFile.toPath(), finalGameFile.toPath());
+        Files.copy(gameFile.toPath(), finalGameFile.toPath());
         response = true; // Setting response to true upon successful transfer
 
         return response; // Returning the transfer status

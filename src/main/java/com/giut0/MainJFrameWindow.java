@@ -1,7 +1,12 @@
 package com.giut0;
 
+import java.io.File;
 import java.nio.file.FileAlreadyExistsException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JFileChooser;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
@@ -17,7 +22,21 @@ public class MainJFrameWindow extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         jProgressBar1.setStringPainted(true);
+        jButtonSelectFile.setIcon(UIManager.getIcon("Tree.closedIcon"));
+        jButtonSelectDest.setIcon(UIManager.getIcon("Tree.closedIcon"));
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (Exception e) {
+
+        }
         setResizable(false);
+    }
+
+    // Get current Timestamp for logs
+    private static String getCurrentTimestamp() {
+        Date now = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss"); // Formato ore:minuti:secondi
+        return "[" + sdf.format(now) + "] ";
     }
 
     /**
@@ -197,13 +216,17 @@ public class MainJFrameWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldGameCodeActionPerformed
 
     private void jButtonSelectFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSelectFileActionPerformed
+
         JFileChooser jFileChooser = new JFileChooser();
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("wbfs files", "wbfs");
+        // Filter for file extension
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("wbfs file", "wbfs");
         jFileChooser.setFileFilter(filter);
         jFileChooser.showOpenDialog(null);
 
         String fileString = jFileChooser.getSelectedFile().toPath().toString();
         jTextFieldFile.setText(fileString);
+        // Set name of file in jTextFieldGameName
+        jTextFieldGameName.setText(jFileChooser.getSelectedFile().getName().split("\\.")[0]);
     }//GEN-LAST:event_jButtonSelectFileActionPerformed
 
     private void jButtonSelectDestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSelectDestActionPerformed
@@ -212,50 +235,57 @@ public class MainJFrameWindow extends javax.swing.JFrame {
         jDirChooser.setAcceptAllFileFilterUsed(false);
         jDirChooser.showOpenDialog(null);
 
-        String dirString = jDirChooser.getSelectedFile().toPath().toString() + "/";
+        String dirString = jDirChooser.getSelectedFile().toPath().toString() + File.separator;
         jTextFieldDest.setText(dirString);
-
     }//GEN-LAST:event_jButtonSelectDestActionPerformed
 
     private void jButtonStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonStartActionPerformed
 
-        boolean value = false; // Initializing a boolean variable
-
-        // Setting initial values for progress bar and text area
-        jProgressBar1.setValue(0);
+        // Reset loag area and progress bar
         jTextAreaLogs.setText(null);
+        jProgressBar1.setString(null);
+        jProgressBar1.setValue(0);
+        jTextAreaLogs.append(">> " + getCurrentTimestamp() + "Starting..." + "\n");
+        jProgressBar1.setValue(50);
+        jButtonStart.setEnabled(false);
 
-        try {
-            // Checking for empty fields in the input text fields
-            WiiGameException.checkEmptyFields(jTextFieldFile.getText(), jTextFieldDest.getText(), jTextFieldGameName.getText(), jTextFieldGameCode.getText());
+        SwingUtilities.invokeLater(() -> {
+            boolean value = false;
+            try {
 
-            // Setting progress bar value and updating logs
-            jProgressBar1.setValue(10);
-            jTextAreaLogs.append(">> Starting progress..." + "\n");
+                // Checking for empty fields in the input text fields
+                WiiGameException.checkEmptyFields(jTextFieldFile.getText(), jTextFieldDest.getText(), jTextFieldGameName.getText(), jTextFieldGameCode.getText());
 
-            // Calling the transferFile method from Main class to transfer Wii game files
-            value = Main.transferFile(jTextFieldFile.getText(), jTextFieldDest.getText(), jTextFieldGameName.getText(), jTextFieldGameCode.getText());
+                // Calling the transferFile method from Main class to transfer Wii game files
+                value = Main.transferFile(jTextFieldFile.getText(), jTextFieldDest.getText(), jTextFieldGameName.getText(), jTextFieldGameCode.getText());
 
-            // Handling the result of the file transfer
-            if (value == true) {
-                jTextAreaLogs.append(">> Completed!" + "\n");
-                jProgressBar1.setValue(100);
-            } else {
-                jTextAreaLogs.append(">> Process failed!" + "\n");
+                // Handling the result of the file transfer
+                if (value == true) {
+                    jTextAreaLogs.append(">> " + getCurrentTimestamp() + "Process completed!" + "\n");
+                    jProgressBar1.setValue(100);
+                    jProgressBar1.setString("Done!");
+                } else {
+                    jTextAreaLogs.append(">> " + getCurrentTimestamp() + "Process failed!" + "\n");
+                    jProgressBar1.setValue(0);
+                    jProgressBar1.setString("Failed!");
+                }
+            } catch (FileAlreadyExistsException f) {
+                // Handling the case where the file already exists
+                jTextAreaLogs.append(">> " + getCurrentTimestamp() + "Error: File already exists \n");
                 jProgressBar1.setValue(0);
+                jProgressBar1.setString("Failed!");
+                System.out.println(f);
+            } catch (Exception e) {
+                // Handling other exceptions and displaying their messages
+                jTextAreaLogs.append(">> " + getCurrentTimestamp() + "Error: " + e.getMessage().toString() + "\n");
+                jProgressBar1.setValue(0);
+                jProgressBar1.setString("Failed!");
+                System.out.println(e);
+            } finally {
+                jButtonStart.setEnabled(true);
             }
-        } catch (FileAlreadyExistsException f) {
-            // Handling the case where the file already exists
-            jTextAreaLogs.append(">> Error: File already exists \n");
-            jProgressBar1.setValue(0);
-            System.out.println(f);
-        } catch (Exception e) {
-            // Handling other exceptions and displaying their messages
-            jTextAreaLogs.append(e.getMessage().toString() + "\n");
-            jProgressBar1.setValue(0);
-            System.out.println(e);
-        }
 
+        });
     }//GEN-LAST:event_jButtonStartActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -267,12 +297,13 @@ public class MainJFrameWindow extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    public javax.swing.JProgressBar jProgressBar1;
+    private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JScrollPane jScrollPane1;
-    public javax.swing.JTextArea jTextAreaLogs;
+    private javax.swing.JTextArea jTextAreaLogs;
     private javax.swing.JTextField jTextFieldDest;
     private javax.swing.JTextField jTextFieldFile;
     private javax.swing.JTextField jTextFieldGameCode;
     private javax.swing.JTextField jTextFieldGameName;
     // End of variables declaration//GEN-END:variables
+
 }
