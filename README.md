@@ -1,6 +1,6 @@
 # Wii Game Loader 👾
 
-This program allows users to load Wii games onto a USB stick for playing on the Wii console. It's developed in Java with a Swing graphical user interface.
+This program allows users to load Wii games onto a USB flash drive to be played on the Wii console. It is developed in Java with a Swing GUI **for all operating systems**.
 
 ## Usage 💪
 
